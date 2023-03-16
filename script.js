@@ -2,7 +2,7 @@ function threeSum(arr, target) {
 // write your code here
 	arr.sort(function(a,b){return a-b;});
 	if(arr.length < 3){
-		return 0;
+		return {message : "arrya of size smaller than 3"};
 	}
 	var sum = 0;
 	for (let i = 0; i < (arr.length) - 2 ; i++) {
