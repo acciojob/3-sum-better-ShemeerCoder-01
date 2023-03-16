@@ -1,18 +1,27 @@
 function threeSum(arr, target) {
-// write your code here
-	arr.sort(function(a,b){return a-b;});
-	if(arr.length < 3){
-		return {message : "arrya of size smaller than 3"};
-	}
-	var sum = 0;
-	for (let i = 0; i < (arr.length) - 2 ; i++) {
-		sum = arr[i] + arr[i+1] + arr[i+2];
-		if (sum === target || sum - 1 === target || sum + 1 === target) {
-			return sum;
-		}else{
-			sum = 0;
-		}
-	}
+  var len = arr.length;
+  var res = arr[0] + arr[1] + arr[2];
+  var sum = 0;
+  var l = 0;
+  var r = 0;
+  arr.sort((a, b) => (a - b));
+  for (var i = 0; i < len - 2; i++) {
+    if (i > 0 && arr[i] === arr[i - 1]) continue;
+    l = i + 1;
+    r = len - 1;
+    while (l < r) {
+      sum = arr[i] + arr[l] + arr[r];
+      if (sum < target) {
+        l++;
+      } else if (sum > target) {
+        r--;
+      } else {
+        return sum;
+      }
+      if (Math.abs(sum - target) < Math.abs(res - target)) res = sum;
+    }
+  }
+  return res;
   
 }
 
